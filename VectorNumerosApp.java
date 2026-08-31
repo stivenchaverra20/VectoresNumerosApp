@@ -24,7 +24,7 @@ public class VectorNumerosApp {
         System.out.println();
 
         // === NUEVO: BUSCAR VALOR ===
-        System.out.print("\n🔍 Ingresa un número para buscar: ");
+        System.out.print("\n Ingresa un número para buscar: ");
         int buscar = teclado.nextInt();
         boolean encontrado = false;
         for (int i = 0; i < vector.length; i++) {
@@ -61,7 +61,29 @@ public class VectorNumerosApp {
         int suma = 0;
         for (int v : vector) suma += v;
         System.out.println("\n Suma total: " + suma);
+ // === NUEVO: PROMEDIO Y VECTOR SOBRE PROMEDIO ===
+        double promedio = (double) suma / vector.length;
+        System.out.println(" Promedio: " + String.format("%.2f", promedio));
 
+        // Contar cuántos están sobre el promedio
+        int conteo = 0;
+        for (int v : vector) if (v > promedio) conteo++;
+
+        // Crear nuevo vector con tamaño exacto
+        int[] sobreProm = new int[conteo];
+        int idx = 0;
+        for (int v : vector) {
+            if (v > promedio) sobreProm[idx++] = v;
+        }
+
+        // Mostrar resultado
+        System.out.print(" Números por encima del promedio (" + conteo + "): ");
+        if (conteo > 0) {
+            for (int v : sobreProm) System.out.print(v + " ");
+            System.out.println();
+        } else {
+            System.out.println("No hay números por encima del promedio.");
+        }
         teclado.close();
     }
 }
